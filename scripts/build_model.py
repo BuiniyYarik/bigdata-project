@@ -12,7 +12,11 @@ from pyspark.sql.functions import coalesce
 from pyspark.sql.types import StringType
 from pyspark.ml.feature import OneHotEncoder, StringIndexer, VectorAssembler, MinMaxScaler
 from pyspark.ml import Pipeline, Transformer
-from pyspark.ml.classification import RandomForestClassifier, FMClassifier, MultilayerPerceptronClassifier
+from pyspark.ml.classification import (
+    FMClassifier,
+    MultilayerPerceptronClassifier,
+    RandomForestClassifier,
+)
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
 
@@ -454,18 +458,32 @@ print(f"Test area under PR for the second best model: {fm_best_pr}")
 
 
 print("\nTraining the third model - Multilayer Perceptron Classifier...")
-input_size = len(df_proj.select("features").first()[0])
+input_size = len(dataset_proj.select("features").first()[0])
 
 # Basic MLP model without PCA
-mlp_classifier = MultilayerPerceptronClassifier(labelCol="label", featuresCol="features",
-                                                layers=[input_size, 64, 2],
-                                                maxIter=100, stepSize=0.03, blockSize=128, seed=42)
+mlp_classifier = MultilayerPerceptronClassifier(
+    labelCol="label",
+    featuresCol="features",
+    layers=[input_size, 64, 2],
+    maxIter=100,
+    stepSize=0.03,
+    blockSize=128,
+    seed=42,
+)
 mlp_model = mlp_classifier.fit(train_df)
 
 # Evaluate basic MLP
 mlp_pred = mlp_model.transform(test_df)
-mlp_evaluator_roc = BinaryClassificationEvaluator(labelCol="label", rawPredictionCol="prediction", metricName="areaUnderROC")
-mlp_evaluator_pr = BinaryClassificationEvaluator(labelCol="label", rawPredictionCol="prediction", metricName="areaUnderPR")
+mlp_evaluator_roc = BinaryClassificationEvaluator(
+    labelCol="label",
+    rawPredictionCol="prediction",
+    metricName="areaUnderROC",
+)
+mlp_evaluator_pr = BinaryClassificationEvaluator(
+    labelCol="label",
+    rawPredictionCol="prediction",
+    metricName="areaUnderPR",
+)
 mlp_roc = mlp_evaluator_roc.evaluate(mlp_pred)
 mlp_pr = mlp_evaluator_pr.evaluate(mlp_pred)
 
@@ -475,10 +493,19 @@ print(f"Test area under PR for the third model: {mlp_pr}")
 
 # Hyperparameter tuning
 print("Fine-tuning the third model...")
-print(f"Hyperparameters:\n\t stepSize - {[0.01, 0.03]}\n\t blockSize - {[128, 256]}\n\t hidden_layer_size - {[32, 64]}")
+print(
+    "Hyperparameters:\n"
+    f"\t stepSize - {[0.01, 0.03]}\n"
+    f"\t blockSize - {[128, 256]}\n"
+    f"\t hidden_layer_size - {[32, 64]}"
+)
 
-mlp_base = MultilayerPerceptronClassifier(labelCol="label", featuresCol="features",
-                                          maxIter=100, seed=42)
+mlp_base = MultilayerPerceptronClassifier(
+    labelCol="label",
+    featuresCol="features",
+    maxIter=100,
+    seed=42,
+)
 
 mlp_grid = ParamGridBuilder() \
     .addGrid(mlp_base.stepSize, [0.01, 0.03]) \
@@ -495,15 +522,22 @@ mlp_cvModel = mlp_cv.fit(train_df)
 model3 = mlp_cvModel.bestModel
 
 print("\nBest hyperparameters for third model:")
-print(f"\t stepSize - {model3.getStepSize()}\n\t blockSize - {model3.getBlockSize()}\n\t layers - {model3.getLayers()}\n")
+print(
+    f"\t stepSize - {model3.getStepSize()}\n"
+    f"\t blockSize - {model3.getBlockSize()}\n"
+    f"\t layers - {model3.getLayers()}\n"
+)
 
 # Evaluate best MLP
 mlp_best_pred = model3.transform(test_df)
 mlp_best_roc = mlp_evaluator_roc.evaluate(mlp_best_pred)
 mlp_best_pr = mlp_evaluator_pr.evaluate(mlp_best_pred)
 
-print(f"Test area under ROC for best third model: {mlp_best_roc}\nTest area under PR for best third model: {mlp_best_pr}")
-      
+print(
+    f"Test area under ROC for best third model: {mlp_best_roc}\n"
+    f"Test area under PR for best third model: {mlp_best_pr}"
+)
+
 
 print("\nAll models built, fine-tuned and evaluated successfully.")
 
@@ -537,9 +571,9 @@ hypoparams = [
      f'initStd = {model2.getInitStd()}',
      f'regParam = {model2.getRegParam()}',
      f'factorSize = {model2.getFactorSize()}'],
-    [str(model3), 
-     f'stepSize = {model3.getStepSize()}', 
-     f'blockSize = {model3.getBlockSize()}', 
+    [str(model3),
+     f'stepSize = {model3.getStepSize()}',
+     f'blockSize = {model3.getBlockSize()}',
      f'layers = {model3.getLayers()}'],
 ]
 hypo_df = spark.createDataFrame(
@@ -593,7 +627,12 @@ prediction_result = models_pred.select(*(numerical + cyclical + \
                                          time_features + date_features + \
                                          boolean_features + categorical_as_cont + \
                                          categorical_ohe + \
-                                         ['label', "model1_prediction", "model2_prediction", "model3_prediction"])
+                                         [
+                                             "label",
+                                             "model1_prediction",
+                                             "model2_prediction",
+                                             "model3_prediction",
+                                         ])
 )
 
 # Save it to HDFS and locally
@@ -611,3 +650,4 @@ print("All necessary files saved successfully.")
 
 # After all processing is done, close the Spark session
 spark.stop()
+add
