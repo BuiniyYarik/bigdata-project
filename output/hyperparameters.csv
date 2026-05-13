@@ -1,0 +1,7 @@
+model;Parameter 1;Parameter 2;Parameter 3
+RandomForestClassificationModel: uid=RandomForestClassifier_652c75c2e8b0, numTrees=10, numClasses=2, numFeatures=481;maxDepth = 10;impurity = gini;numTrees = 10
+FMClassificationModel: uid=FMClassifier_7272abf3f5ed, numClasses=2, numFeatures=481, factorSize=8, fitLinear=true, fitIntercept=true;initStd = 0.05;regParam = 0.0;factorSize = 8
+MultilayerPerceptronClassificationModel: uid=MultilayerPerceptronClassifier_f762f8bef872, numLayers=3, numClasses=2, numFeatures=481;stepSize = 0.01;blockSize = 256;layers = [481, 32, 2]
+RandomForestClassificationModel: uid=RandomForestClassifier_56434e717c68, numTrees=20, numClasses=2, numFeatures=2;maxDepth = 5;impurity = gini;numTrees = 20
+FMClassificationModel: uid=FMClassifier_cb087aec256d, numClasses=2, numFeatures=2, factorSize=8, fitLinear=true, fitIntercept=true;initStd = 0.01;regParam = 0.0;factorSize = 8
+MultilayerPerceptronClassificationModel: uid=MultilayerPerceptronClassifier_8d309425b6b7, numLayers=3, numClasses=2, numFeatures=2;stepSize = 0.01;blockSize = 128;layers = [2, 64, 2]
