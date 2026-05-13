@@ -1,0 +1,7 @@
+model;Area under ROC;Area under PR
+RandomForestClassificationModel: uid=RandomForestClassifier_652c75c2e8b0, numTrees=10, numClasses=2, numFeatures=481;0.9998649743451256;0.9999550792426315
+FMClassificationModel: uid=FMClassifier_7272abf3f5ed, numClasses=2, numFeatures=481, factorSize=8, fitLinear=true, fitIntercept=true;0.9996983600028968;0.9994661360264379
+MultilayerPerceptronClassificationModel: uid=MultilayerPerceptronClassifier_f762f8bef872, numLayers=3, numClasses=2, numFeatures=481;1.0;0.999992441098619
+RandomForestClassificationModel: uid=RandomForestClassifier_56434e717c68, numTrees=20, numClasses=2, numFeatures=2;0.5364460892228033;0.5459113602831631
+FMClassificationModel: uid=FMClassifier_cb087aec256d, numClasses=2, numFeatures=2, factorSize=8, fitLinear=true, fitIntercept=true;0.50102374968801;0.4998730408907802
+MultilayerPerceptronClassificationModel: uid=MultilayerPerceptronClassifier_8d309425b6b7, numLayers=3, numClasses=2, numFeatures=2;0.5192696159824364;0.5164005221470849
