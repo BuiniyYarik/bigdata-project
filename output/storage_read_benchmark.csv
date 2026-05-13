@@ -1,0 +1,17 @@
+format,compression,table_path,operation,result_value,runtime_sec
+avro,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_snappy/flights,count_all,6311871,6.1488
+avro,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_snappy/flights,distinct_first_column,365,4.8394
+avro,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_snappy/flights,sort_by_first_column,6311871,3.6059
+avro,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_snappy/flights,group_by_second_column,22,3.9151
+avro,bzip2,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_bzip2/flights,count_all,6311871,10.83
+avro,bzip2,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_bzip2/flights,distinct_first_column,365,9.9566
+avro,bzip2,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_bzip2/flights,sort_by_first_column,6311871,11.1116
+avro,bzip2,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/avro_bzip2/flights,group_by_second_column,22,12.0673
+parquet,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_snappy/flights,count_all,6311871,0.7542
+parquet,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_snappy/flights,distinct_first_column,365,0.982
+parquet,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_snappy/flights,sort_by_first_column,6311871,0.3037
+parquet,snappy,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_snappy/flights,group_by_second_column,22,0.9092
+parquet,gzip,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_gzip/flights,count_all,6311871,0.1339
+parquet,gzip,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_gzip/flights,distinct_first_column,365,0.4271
+parquet,gzip,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_gzip/flights,sort_by_first_column,6311871,0.1303
+parquet,gzip,hdfs://hadoop-02.uni.innopolis.ru:8020/user/team4/project/benchmark_storage/parquet_gzip/flights,group_by_second_column,22,0.563

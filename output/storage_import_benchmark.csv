@@ -1,0 +1,7 @@
+format,compression,hdfs_path,size_bytes,import_time_sec,status
+avro,snappy,/user/team4/project/benchmark_storage/avro_snappy,567019906,274,SUCCESS
+avro,gzip,/user/team4/project/benchmark_storage/avro_gzip,0,26,FAILED
+avro,bzip2,/user/team4/project/benchmark_storage/avro_bzip2,328054354,523,SUCCESS
+parquet,snappy,/user/team4/project/benchmark_storage/parquet_snappy,208399707,191,SUCCESS
+parquet,gzip,/user/team4/project/benchmark_storage/parquet_gzip,170569654,212,SUCCESS
+parquet,bzip2,/user/team4/project/benchmark_storage/parquet_bzip2,,3,FAILED
