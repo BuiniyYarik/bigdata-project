@@ -5,10 +5,8 @@ CREATE EXTERNAL TABLE team4_projectdb.optimization(
 Model VARCHAR(150), 
 InitialAreaUnderROC FLOAT,
 OptimizedAreaUnderROC FLOAT,
-IncreaseAreaUnderPR FLOAT,
 InitialAreaUnderPR FLOAT,
-OptimizedAreaUnderPR FLOAT,
-IncreaseAreaUnderROC FLOAT)
+OptimizedAreaUnderPR FLOAT)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ';'
 location '/user/team4/project/hive/warehouse/optimization'; 
